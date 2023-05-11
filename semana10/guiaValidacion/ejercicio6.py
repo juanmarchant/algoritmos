@@ -18,6 +18,7 @@ print("===== CAMPEONATO DE FUTBOL =====")
 
 valorTicket = 10000
 r = 's'
+valorTotal = 0
 
 while r == 's':
     while True:
@@ -34,7 +35,7 @@ while r == 's':
     while True:
         try:
             metodoPago = int(input("Con metodo se cancelara (1: efectivo, 2: debito, 3: crédito): "))
-            if metodoPago != 1 and metodoPago != 2 and metodoPago = 3:
+            if metodoPago != 1 and metodoPago != 2 and metodoPago != 3:
                 print("Porfavor ingresa alguno de los metodos mostrados anteriormente")
             else:
                 os.system("cls")
@@ -43,13 +44,30 @@ while r == 's':
             print("Error, caracter no valido... porfavor ingresar alguno de los metodos mencionados anteriormente")
 
     if metodoPago == 1: 
-        valorTotal = ( valorTicket * cantidadEntradas )
+        valorTotal = ( valorTicket * cantidadEntradas ) * 0.94
+    elif metodoPago == 2:
+        valorTotal = ( valorTicket * cantidadEntradas ) * 0.93
+    else:
+        if cantidadEntradas > 3:
+            valorTotal = ( valorTicket * cantidadEntradas ) * 0.95
+        else:
+            valorTotal = valorTicket * cantidadEntradas
+        
+    print(f"""===== MONTO =====
 
+    El monto total a pagar es de: {valorTotal} CLP
+    """)
 
-
-
-
-
+    while True:
+        try:
+            r = input("Quieres ingresar otra compra?: (s/n) ").lower()
+            if r != 's' and r != 'n':
+                print("Ingresa alguna de las opciones mencionas (s/n)")
+            else:
+                os.system("cls")
+                break
+        except ValueError:
+            print("Error, caracter no valido... porfavor ingresa alguno de los metodos mencionados anteriormente")
 
 
 
