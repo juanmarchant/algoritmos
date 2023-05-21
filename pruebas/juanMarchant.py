@@ -24,14 +24,14 @@ seguirVentas = 's'
 while seguirVentas =='s':
     while True:
         try:
-            cliente = int(input("Ingrese el id del cliente: (Max: 2 caracteres | ex: XX): "))
+            cliente = int(input("Ingrese el id del cliente: "))
             if cliente < 1:
-                print("Error, ingrese el id del cliente nuevamente (numero positivo) ..ex: XX -> 12")
+                print("Error, ingrese el id del cliente nuevamente (numero positivo) ..ex: -> 12")
             else:
                 os.system("cls")
                 break
         except ValueError:
-            print("Error, caracter no validos... intentelo nuevamente | ex: XX -> 12")
+            print("Error, caracter no validos... intentelo nuevamente | ex: -> 12")
 
     seguirComprando = 's'
     while seguirComprando == 's':
