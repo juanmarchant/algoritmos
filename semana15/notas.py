@@ -1,4 +1,6 @@
-import os, random
+"""Modulos para usar cls y random"""
+import os
+import random
 
 generado = [False]
 estudiantes = []
@@ -9,6 +11,7 @@ estudiantesReprobados = []
 
 
 def seleccionarOpcion():
+    """Esta funcion validara nuestra opcion en nuestro menu"""
     while True:
         try:
             opcion = int(input("\tElija Opción: "))
@@ -24,7 +27,7 @@ def seleccionarOpcion():
     return opcion
 
 def mostrarNotas():
-
+    """Mostrar las notas de los alumnos"""
     for nota in range(len(estudiantes)): 
         print(f"""
         Estudiante {nota+1}
@@ -39,26 +42,26 @@ def mostrarAprobadosReprobados():
     if promedios[0] == False:
         for nota in range(len(estudiantes)):
             promedio =  (estudiantes[nota][0] + estudiantes[nota][1] + estudiantes[nota][2] + estudiantes[nota][3] ) / 4
-            promedio = round(promedio,1)
-            
+            promedio = round(promedio,1) 
             if promedio >= 4.0:
                 estudiantesAprobados.append(promedio)
             else:
                 estudiantesReprobados.append(promedio)
 
-        print(f""" 
+        print(f"""
         Estudiantes Aprobados: {len(estudiantesAprobados)}
         Estudiantes Reprobados: {len(estudiantesReprobados)}
         """)
         promedios[0] = True
     else:
-        print(f""" 
+        print(f"""
         Estudiantes Aprobados: {len(estudiantesAprobados)}
         Estudiantes Reprobados: {len(estudiantesReprobados)}
         """)
 
-def promedioMayorMenor():
-    promedioTotal = []
+def promediomayormenor():
+    """ Esta funcion calculara el promedio mayor y menor"""
+    promediototal = []
     sumatoria = 0
     for estudiante in range(len(estudiantes)):
         for nota in range(len(estudiantes[estudiante])):
@@ -66,19 +69,19 @@ def promedioMayorMenor():
             if nota == 3:
                 promedio =  sumatoria / 4
                 promedio = round(promedio, 1)
-                promedioTotal.append(promedio)
+                promediototal.append(promedio)
                 sumatoria = 0
 
-    for nota in range(len(promedioTotal)):
+    for nota in range(len(promediototal)):
         if nota == 0:
-            promedioMayor = promedioTotal[0]
-            promedioMenor = promedioTotal[0]
+            promedioMayor = promediototal[0]
+            promedioMenor = promediototal[0]
 
-        if promedioTotal[nota] > promedioMayor:
-            promedioMayor = promedioTotal[nota]
+        if promediototal[nota] > promedioMayor:
+            promedioMayor = promediototal[nota]
 
-        if promedioTotal[nota] < promedioMenor:
-            promedioMenor = promedioTotal[nota]
+        if promediototal[nota] < promedioMenor:
+            promedioMenor = promediototal[nota]
 
     print(f"""
     El promedio mayor es: {promedioMayor}
@@ -97,7 +100,7 @@ def generarAlumnos():
                     break
             except ValueError:
                 print("Error, caracter no valido")
-        #[t1, nt2, nt3, nt4] 
+        #[t1, nt2, nt3, nt4]
         calificaciones = []
         for estudiante in range(cantidadAlumnos): 
             for i in range(4):
@@ -108,7 +111,6 @@ def generarAlumnos():
                 if len(calificaciones) == 4:
                     estudiantes.append(calificaciones)
                     calificaciones = []
-                
         generado[0] = True
     else:
         while True:
@@ -132,7 +134,8 @@ def generarAlumnos():
 
 
 def menu():
-    print(f"""
+    """ Funcion que imprimira el menu"""
+    print("""
     ******* Matemáticas ******
     1. Generar
     2. Mostrar cada nota y el promedio obtenido por cada estudiante
@@ -142,10 +145,10 @@ def menu():
     """)
 
 def main():
+    """Esta es la funcion main, donde todas las funciones son llamadas"""
     while True:
         menu()
         opcion = seleccionarOpcion()
-        
         if opcion == 1:
             generarAlumnos()
         if opcion == 2:
@@ -153,7 +156,7 @@ def main():
         if opcion == 3:
             mostrarAprobadosReprobados()
         if opcion == 4:
-            promedioMayorMenor()
+            promediomayormenor()
         if opcion == 5:
             break
 
